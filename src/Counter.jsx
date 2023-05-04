@@ -9,20 +9,24 @@ const Counter = () => {
 
   const handleAttack = () => {
     let newCount = count + Math.round(Math.random() * 10);
-    setCount(newCount);
-    setGameStatus(newCount > 10 ? "You won" : gameStatus);
-    setLastPlay("Attack");
+    return (
+      setCount(newCount),
+      setGameStatus(newCount > 10 ? "You won" : gameStatus),
+      setLastPlay("Attack")
+    );
   };
   const handleDefence = () => {
     let newCount = count - Math.round(Math.random() * 10);
-    setCount(newCount);
-    setGameStatus(newCount < -10 ? "You lose" : gameStatus);
-    setLastPlay("Defence");
+    return (
+      setCount(newCount),
+      setGameStatus(newCount < -10 ? "You lose" : gameStatus),
+      setLastPlay("Defence")
+    );
   };
 
   const handleRandomPlay = () => {
     let playMode = Math.round(Math.random());
-    if (playMode == 0) {
+    if (playMode === 0) {
       handleAttack();
     } else {
       handleDefence();
@@ -30,9 +34,7 @@ const Counter = () => {
   };
 
   const handleReset = () => {
-    setCount(0);
-    setGameStatus("");
-    setLastPlay("");
+    return setCount(0), setGameStatus(""), setLastPlay("");
   };
 
   return (
@@ -50,6 +52,7 @@ const Counter = () => {
               cursor: "pointer",
               border: "1px solid green",
             }}
+            alt="attack"
             className="p-4 rounded"
             src={attack}
             onClick={handleAttack}></img>
@@ -63,6 +66,7 @@ const Counter = () => {
             }}
             className="p-4 rounded"
             src={defend}
+            alt="Defence"
             onClick={handleDefence}></img>
         </div>
       </div>
